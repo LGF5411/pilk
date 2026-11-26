@@ -83,13 +83,14 @@
   var meas = null;
   function fit(text, w, h, style, lo, hi, nowrap) {
     if (!text || w < 2 || h < 2) return 0;
+    w = Math.floor(w);   // scrollWidth is whole pixels: a fractional box could never 'fit'
     if (!meas) { meas = document.createElement('div'); meas.setAttribute('aria-hidden', 'true'); document.body.appendChild(meas); }
     meas.style.cssText = 'position:absolute;left:-10000px;top:0;visibility:hidden;pointer-events:none;overflow-wrap:normal;' + style + 'width:' + w + 'px;white-space:' + (nowrap ? 'nowrap' : 'normal') + ';';
     meas.textContent = text;
     var a = lo, b = Math.max(lo, hi), best = 0;
     for (var i = 0; i < 11; i++) {
       var mid = (a + b) / 2; meas.style.fontSize = mid + 'px';
-      if (meas.scrollHeight <= h + .5 && meas.scrollWidth <= w + .5) { best = mid; a = mid; } else b = mid;
+      if (meas.scrollHeight <= h + 1 && meas.scrollWidth <= w) { best = mid; a = mid; } else b = mid;
     }
     return best;
   }
@@ -108,14 +109,18 @@
   };
   P.mix = function (a, b, t) {
     if (t <= 0) return a; if (t >= 1) return b;
-    var o = { W: lerp(a.W, b.W, t), H: lerp(a.H, b.H, t), st: lerp(a.st, b.st, t), g: {}, fs: {}, op: {}, id: t < .5 ? a.id : b.id };
-    SLOTS.forEach(function (k) {
-      var A = a.g[k], B = b.g[k], va = !!A && (k === 'art' || a.fs[k] > 0), vb = !!B && (k === 'art' || b.fs[k] > 0);
-      if (!va && !vb) { o.g[k] = null; return; }
-      var RA = va ? A : B, RB = vb ? B : A;
-      o.g[k] = [lerp(RA[0], RB[0], t), lerp(RA[1], RB[1], t), lerp(RA[2], RB[2], t), lerp(RA[3], RB[3], t)];
-      o.fs[k] = k === 'art' ? 1 : lerp(va ? a.fs[k] : b.fs[k], vb ? b.fs[k] : a.fs[k], t);
-      o.op[k] = lerp(va ? 1 : 0, vb ? 1 : 0, t);
+    // the frame and the art morph; the words keep the nearer layout and cross-fade, so they never collide half-way
+    var n = t < .5 ? a : b, o = { W: lerp(a.W, b.W, t), H: lerp(a.H, b.H, t), st: n.st, g: {}, fs: {}, op: {}, id: n.id };
+    var dip = smooth((Math.abs(t - .5) - .03) / .3), k = Math.min(o.W / n.W, o.H / n.H);
+    SLOTS.forEach(function (s) {
+      if (s === 'art') {
+        var A = a.g.art, B = b.g.art; if (!A && !B) { o.g.art = null; return; }
+        var RA = A || B, RB = B || A;
+        o.g.art = [lerp(RA[0], RB[0], t), lerp(RA[1], RB[1], t), lerp(RA[2], RB[2], t), lerp(RA[3], RB[3], t)];
+        o.fs.art = 1; o.op.art = lerp(A ? 1 : 0, B ? 1 : 0, t); return;
+      }
+      if (!n.g[s] || !n.fs[s]) { o.g[s] = null; return; }
+      o.g[s] = n.g[s]; o.fs[s] = n.fs[s] * k; o.op[s] = dip;
     });
     return o;
   };

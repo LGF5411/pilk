@@ -169,3 +169,11 @@
     });
   });
 })();
+
+/* comparison tables: each cell carries its column name, so phones can stack rows */
+(function () {
+  [].forEach.call(document.querySelectorAll('table.cmp'), function (t) {
+    var h = [].map.call(t.querySelectorAll('thead th'), function (x) { return x.textContent.trim(); });
+    [].forEach.call(t.querySelectorAll('tbody tr'), function (r) { [].forEach.call(r.children, function (c, i) { if (c.tagName === 'TD' && h[i]) c.setAttribute('data-th', h[i]); }); });
+  });
+})();

@@ -106,7 +106,7 @@
         '160x600': ['Lai pilvelõhkuja', 'Veebilehed arvutis'], '320x50': ['Mobiili leaderboard', 'Telefonid'], '320x100': ['Suur mobiilibänner', 'Telefonid'], '970x250': ['Billboard', 'Lehe päised'],
         '970x90': ['Suur leaderboard', 'Veebilehed arvutis'], '468x60': ['Bänner', 'Vanemad pinnad'], '250x250': ['Ruut', 'Google Display'], '200x200': ['Väike ruut', 'Google Display'],
         '1080x1080': ['Ruutpostitus', 'Instagram, Facebook'], '1080x1350': ['Püstpostitus', 'Instagram, Facebook'], '1080x1920': ['Story / Reel', 'Instagram, TikTok'], '1200x628': ['Lingireklaam', 'Facebook, LinkedIn'],
-        '1584x396': ['Lehe kaanepilt', 'LinkedIn'], '1500x500': ['Päis', 'X'], '1280x720': ['Pisipilt', 'YouTube'], '1000x1500': ['Pin', 'Pinterest'],
+        '1584x396': ['Lehe kaanepilt', 'LinkedIn'], '1500x500': ['Päis', 'X (Twitter)'], '1280x720': ['Pisipilt', 'YouTube'], '1000x1500': ['Pin', 'Pinterest'],
         'rollup': ['Roll-up', 'Messid, fuajeed'], 'billboard': ['Suurplakat', 'Tänavad, maanteed'], 'citylight': ['Citylight', 'Bussipeatused'], 'mesh': ['Võrkbänner', 'Aiad, fassaadid'], 'a1': ['Plakat A1', 'Poeaknad'], 'a5': ['Flaier A5', 'Letid, post']
       },
       packs: { display: ['Veebipakk', 'Veeb', 'Google Ads ja veebilehtede bännerid'], social: ['Sotsiaalmeedia pakk', 'Sotsiaalmeedia', 'Postitused, story’d, kaanepildid ja lingireklaamid'], print: ['Trükipakk', 'Trükk', 'Roll-up, suurplakat, citylight, plakatid'], all: ['Kõik suurused', 'Kõik', 'Kõik 26 suurust ühest kujundusest'] },
@@ -153,7 +153,7 @@
         '160x600': ['Широкий небоскрёб', 'Сайты на компьютере'], '320x50': ['Мобильный лидерборд', 'Телефоны'], '320x100': ['Большой мобильный баннер', 'Телефоны'], '970x250': ['Билборд', 'Шапки сайтов'],
         '970x90': ['Большой лидерборд', 'Сайты на компьютере'], '468x60': ['Баннер', 'Старые площадки'], '250x250': ['Квадрат', 'Google Display'], '200x200': ['Малый квадрат', 'Google Display'],
         '1080x1080': ['Квадратный пост', 'Instagram, Facebook'], '1080x1350': ['Вертикальный пост', 'Instagram, Facebook'], '1080x1920': ['Сторис / Reels', 'Instagram, TikTok'], '1200x628': ['Реклама со ссылкой', 'Facebook, LinkedIn'],
-        '1584x396': ['Обложка страницы', 'LinkedIn'], '1500x500': ['Шапка', 'X'], '1280x720': ['Обложка видео', 'YouTube'], '1000x1500': ['Пин', 'Pinterest'],
+        '1584x396': ['Обложка страницы', 'LinkedIn'], '1500x500': ['Шапка', 'X (Twitter)'], '1280x720': ['Обложка видео', 'YouTube'], '1000x1500': ['Пин', 'Pinterest'],
         'rollup': ['Ролл-ап', 'Выставки, холлы'], 'billboard': ['Билборд', 'Улицы, трассы'], 'citylight': ['Ситилайт', 'Остановки'], 'mesh': ['Баннерная сетка', 'Заборы, фасады'], 'a1': ['Плакат A1', 'Витрины'], 'a5': ['Флаер A5', 'Стойки, почта']
       },
       packs: { display: ['Пакет для веба', 'Веб', 'Баннеры для Google Ads и сайтов'], social: ['Пакет для соцсетей', 'Соцсети', 'Посты, сторис, обложки и реклама со ссылкой'], print: ['Пакет для печати', 'Печать', 'Ролл-ап, билборд, ситилайт, плакаты'], all: ['Все размеры', 'Все', 'Все 26 размеров из одного дизайна'] },

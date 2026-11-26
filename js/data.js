@@ -21,7 +21,7 @@
     '1080x1920': { w: 1080, h: 1920, n: 'Story / Reel', where: 'Instagram, TikTok', g: 'social', safe: 1 },
     '1200x628': { w: 1200, h: 628, n: 'Link ad', where: 'Facebook, LinkedIn', g: 'social' },
     '1584x396': { w: 1584, h: 396, n: 'Page cover', where: 'LinkedIn', g: 'social' },
-    '1500x500': { w: 1500, h: 500, n: 'Header', where: 'X', g: 'social' },
+    '1500x500': { w: 1500, h: 500, n: 'Header', where: 'X (Twitter)', g: 'social' },
     '1280x720': { w: 1280, h: 720, n: 'Thumbnail', where: 'YouTube', g: 'social' },
     '1000x1500': { w: 1000, h: 1500, n: 'Pin', where: 'Pinterest', g: 'social' },
     'rollup': { w: 850, h: 2000, u: 'mm', lw: 680, lh: 1600, n: 'Roll-up', where: 'Fairs, lobbies', g: 'print' },

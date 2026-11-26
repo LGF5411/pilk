@@ -12,6 +12,7 @@
   function render() {
     var items = P.cart.items();
     $('#cartTitle').textContent = P.t(items.length ? 'Your cart' : 'Your cart is empty');
+    $('#cartView').classList.toggle('is-empty', !items.length);
     if (!items.length) {
       list.innerHTML = '<div class="empty"><span class="empty-ico">' + P.ico('shopping-bag') + '</span><p class="lead">' + P.t('Every set comes in all its sizes. Pick a design, add your words, and it’s ready.') + '</p><a class="btn" href="shop.html">' + P.t('Browse sets') + ' ' + P.ico('arrow-right') + '</a></div>';
     } else {
