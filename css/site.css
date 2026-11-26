@@ -648,3 +648,37 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent-i
 .lang a[aria-current]{color:var(--accent-ink)}
 .menu-lang{margin-bottom:22px;font-size:15px}
 @media (max-width:420px){.hdr .lang a{padding:6px 4px}}
+
+/* ---------- polish pass ---------- */
+.ftr{margin-top:clamp(64px,8vw,120px)}
+.sec+.ftr,.sec+.buybar+.ftr{margin-top:0}
+.cart.is-empty{grid-template-columns:minmax(0,1fr)}.cart.is-empty .sum{display:none}
+@media (max-width:960px){
+  .shelf-3{grid-template-columns:none}.shelf-3 .shelf-item:nth-child(n+4){display:grid}
+  .set-top{row-gap:0}.set-stage,.set-buy{display:contents}
+  .set-top .crumbs{order:0}.set-buy>.eyebrow,.set-buy>h1,.set-buy>.lead{order:1}.set-stage>*{order:2}.set-top .crumbs{order:0}.set-buy>*{order:3}
+  .set-buy>.eyebrow,.set-buy>h1,.set-buy>.lead{order:1}
+  .set-buy>.lead{margin-bottom:20px}.set-buy>fieldset:first-of-type{margin-top:30px}
+}
+@media (max-width:700px){
+  .cats{flex-wrap:nowrap;gap:0 20px;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}
+  .cats::-webkit-scrollbar{display:none}.cats button{flex:none;white-space:nowrap}
+  .cmp-wrap{overflow:visible}.cmp{min-width:0}
+  .cmp thead{display:none}
+  .cmp tbody tr{display:block;padding:16px 0;border-bottom:1px solid var(--line)}
+  .cmp tbody th{display:flex;align-items:center;border:0;padding:0 0 8px;white-space:normal}
+  .cmp tbody th .ico-s{display:inline-block}
+  .cmp td{display:flex;justify-content:space-between;align-items:baseline;gap:18px;border:0;padding:4px 0;font-size:15px;text-align:right}
+  .cmp td::before{content:attr(data-th);flex:none;max-width:52%;color:var(--muted);font-weight:460;text-align:left}
+  .cmp td.is-us::before{color:var(--accent-ink)}
+  .guide-tbl{min-width:0}
+  .guide-tbl thead{display:none}
+  .guide-tbl tbody tr{display:grid;grid-template-columns:108px minmax(0,1fr);column-gap:16px;row-gap:4px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .guide-tbl tbody tr[hidden]{display:none}
+  .guide-tbl td{border:0;padding:0;font-size:15px}
+  .guide-tbl td:first-child{grid-row:1/span 4;align-self:start;display:block}
+  .guide-tbl td:nth-child(n+2){grid-column:2}
+  .guide-tbl .guide-pv{width:108px;height:84px}
+  .guide-tbl td:nth-child(3),.guide-tbl td:nth-child(5){font-size:14px;color:var(--muted)}
+  .guide-tbl td:nth-child(4){padding-block:4px}
+}
