@@ -1,0 +1,19 @@
+<!--@ title="Laine Spa — example design by Pilk" desc="Example small-business site for a spa hotel: plan a weekend and see one quiet bill." layout="bare" i18n="off" robots="noindex" body="demo d-spa" type="site" ex="spa" -->
+<header class="dw sp-top"><a class="sp-logo" href="#main">Laine Spa</a><nav><a href="#day">A day here</a><a href="#rooms">Rooms</a></nav></header>
+<section class="dw sp-hero">
+  <div><h1>Two nights, one quiet bill.</h1><p>A small spa hotel on the coast, an hour from Tallinn. Set your weekend below; the price is the price.</p></div>
+  <svg class="sp-rip" viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="30"/><circle cx="150" cy="150" r="70"/><circle cx="150" cy="150" r="110"/><circle cx="150" cy="150" r="145"/></svg>
+</section>
+<section class="dw sp-plan">
+  <div class="sp-row"><span>{{i:calendar-days}}Nights</span><div class="sp-step"><button type="button" id="spMinus" aria-label="One night fewer">{{i:minus}}</button><b id="spN">2</b><button type="button" id="spPlus" aria-label="One night more">{{i:plus}}</button></div></div>
+  <div class="sp-row"><span>{{i:users}}Guests</span><b>2</b></div>
+  <label class="sp-row"><span><input type="checkbox" id="spMas">Massage for two, 50 minutes</span><b>+€60</b></label>
+  <label class="sp-row"><span><input type="checkbox" id="spDin">Dinner on the first evening</span><b>+€48</b></label>
+  <div class="sp-total"><span>Your weekend</span><b id="spT">€249</b><a href="#rooms">Check dates {{i:arrow-right}}</a></div>
+  <p class="sp-note">Breakfast, sauna and the pool are always included.</p>
+</section>
+<section class="dw sp-day" id="day"><h2>A day here</h2>
+  <ol><li data-reveal><time>8:00</time><p>The sauna is warm. Nobody is in it yet.</p></li><li data-reveal><time>10:00</time><p>Breakfast, until whenever you come down.</p></li><li data-reveal><time>14:00</time><p>Massage, then the pool, then nothing.</p></li><li data-reveal><time>19:00</time><p>Dinner from what the coast gave this week.</p></li><li data-reveal><time>22:00</time><p>Quiet hours. The sea keeps talking.</p></li></ol></section>
+<section class="dw sp-rooms" id="rooms"><h2>Rooms</h2>
+  <ul><li data-reveal><b>Pine</b><span>forest side, 24 m²</span><em>€119 a night</em></li><li data-reveal><b>Dune</b><span>sea side, balcony, 28 m²</span><em>€139 a night</em></li><li data-reveal><b>Loft</b><span>top floor, bath by the window, 40 m²</span><em>€189 a night</em></li></ul></section>
+<footer class="dw sp-foot"><p>{{i:map-pin}}Ranna tee 4, Laulasmaa</p><p>{{i:phone}}+372 5550 0163</p></footer>

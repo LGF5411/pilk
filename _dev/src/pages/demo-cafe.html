@@ -1,0 +1,25 @@
+<!--@ title="Mõnus café — example design by Pilk" desc="Example landing page for a café: the page is today’s menu." layout="bare" i18n="off" robots="noindex" body="demo d-cafe" type="landing" ex="cafe" -->
+<div class="dw cf">
+  <aside class="cf-side">
+    <a class="cf-logo" href="#main">Mõnus</a>
+    <p class="cf-open" data-open="11-15">{{i:clock}}<span>Lunch 11–15</span></p>
+    <h1>Soup, bread, and a seat by the window.</h1>
+    <p class="cf-lead">A small lunch café in Kalamaja. The menu changes every day and is always this short.</p>
+    <a class="cf-btn" href="#book">Book a table {{i:arrow-right}}</a>
+    <ul class="cf-facts"><li>{{i:map-pin}}Kotzebue 9, Tallinn</li><li>{{i:phone}}+372 5550 0142</li></ul>
+    <svg class="cf-plate" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff7d3"/><circle cx="100" cy="100" r="70" fill="none" stroke="#ffb56b" stroke-width="3"/><circle cx="100" cy="100" r="52" fill="#ff6c47"/><circle cx="84" cy="88" r="9" fill="#ffb56b"/><circle cx="118" cy="108" r="7" fill="#7a1616"/><circle cx="96" cy="122" r="5" fill="#ffe68f"/></svg>
+  </aside>
+  <div class="cf-menu">
+    <p class="cf-day">{{i:utensils}}Today’s menu · <span data-today>Friday</span></p>
+    <section><h2>Soups</h2>
+      <ul class="cf-list"><li data-reveal><b>Beetroot and ginger</b><i></i><span>€5.50</span><small>with sour cream and dill</small></li><li data-reveal><b>Smoked fish chowder</b><i></i><span>€6.90</span><small>potato, leek, a little butter</small></li></ul></section>
+    <section><h2>Mains</h2>
+      <ul class="cf-list"><li data-reveal><b>Barley risotto</b><i></i><span>€9.50</span><small>forest mushrooms, hard cheese</small></li><li data-reveal><b>Baked cod</b><i></i><span>€11.90</span><small>new potatoes, green sauce</small></li><li data-reveal><b>Roast carrot plate</b><i></i><span>€8.90</span><small>hummus, seeds, rye crumbs</small></li></ul></section>
+    <section><h2>Sweet</h2>
+      <ul class="cf-list"><li data-reveal><b>Curd cake</b><i></i><span>€4.20</span><small>sea buckthorn jam</small></li><li data-reveal><b>Cardamom bun</b><i></i><span>€2.80</span><small>baked at ten</small></li></ul></section>
+    <section class="cf-deal" data-reveal><p>Lunch deal</p><h2>Soup + bread <b>€7.90</b></h2><p>Weekdays 11–15. Bread is baked here, butter is salted.</p></section>
+    <section class="cf-book" id="book" data-reveal><h2>Come by</h2>
+      <dl><div><dt>Mon–Fri</dt><dd>8–17</dd></div><div><dt>Saturday</dt><dd>10–16</dd></div><div><dt>Sunday</dt><dd>closed</dd></div></dl>
+      <p>Tables for six or more: call us a day ahead. Everyone else: just walk in.</p></section>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<!--@ title="Rattur bike workshop — example design by Pilk" desc="Example small-business site for a bike workshop: name the problem, see the fix, the price and the time." layout="bare" i18n="off" robots="noindex" body="demo d-bike" type="site" ex="workshop" -->
+<header class="dw bk-top"><a class="bk-logo" href="#main">Rattur</a><span class="bk-open">{{i:clock}}Open today until 19</span></header>
+<section class="dw bk-hero">
+  <h1>What’s wrong with your bike?</h1>
+  <svg class="bk-wheel" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="100" cy="100" r="9" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><path d="M100 8v184M8 100h184M35 35l130 130M165 35L35 165M56 16l88 168M144 16L56 184M16 56l168 88M16 144l168-88"/></g></svg>
+</section>
+<section class="dw bk-diag">
+  <ul class="bk-sym" role="tablist"><li><button type="button" role="tab" aria-selected="true" data-s="0">Brakes squeal</button></li><li><button type="button" role="tab" aria-selected="false" data-s="1">Gears skip</button></li><li><button type="button" role="tab" aria-selected="false" data-s="2">Flat again</button></li><li><button type="button" role="tab" aria-selected="false" data-s="3">Chain rattles</button></li><li><button type="button" role="tab" aria-selected="false" data-s="4">It just feels slow</button></li></ul>
+  <div class="bk-ans" aria-live="polite"><p class="bk-k">Most likely</p><h2 id="bkFix">Worn or glazed brake pads</h2><p id="bkDo">We clean the rims or discs, replace the pads and set the levers so both brakes bite evenly.</p>
+    <dl><div><dt>{{i:euro}}Price</dt><dd id="bkP">€18</dd></div><div><dt>{{i:clock}}Time</dt><dd id="bkT">30 min</dd></div><div><dt>{{i:wrench}}Parts</dt><dd id="bkPa">pads from €8</dd></div></dl></div>
+</section>
+<section class="dw bk-steps"><h2>Drop it off in three moves</h2>
+  <ol><li data-reveal><b>1</b><h3>Roll in</h3><p>No booking. We look at the bike while you are still here.</p></li><li data-reveal data-delay="90"><b>2</b><h3>Get a price</h3><p>Fixed before we touch anything, written on the tag.</p></li><li data-reveal data-delay="180"><b>3</b><h3>Get a text</h3><p>Most jobs are done the same day. We text when it is ready.</p></li></ol></section>
+<section class="dw bk-price"><h2>Full service</h2>
+  <table><tbody><tr data-reveal><th>Spring check</th><td>brakes, gears, tyres, bolts</td><td>€25</td></tr><tr data-reveal><th>Full service</th><td>everything taken apart, cleaned, greased</td><td>€69</td></tr><tr data-reveal><th>Wheel truing</th><td>per wheel</td><td>€15</td></tr></tbody></table></section>
+<footer class="dw bk-foot"><p>{{i:map-pin}}Põhja pst 27, Tallinn</p><p>{{i:phone}}+372 5550 0119</p><p>Mon–Sat 9–19</p></footer>

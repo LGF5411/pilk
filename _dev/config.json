@@ -1,1 +1,13 @@
-{"base": "https://lgf5411.github.io/pilk", "langs": ["en", "et", "ru"]}
+{
+ "base": "https://lgf5411.github.io/pilk",
+ "langs": [
+  "en",
+  "et",
+  "ru"
+ ],
+ "email": "hello@pilk.studio",
+ "instagram": "",
+ "tiktok": "",
+ "form": "",
+ "demo": true
+}

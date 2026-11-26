@@ -1,0 +1,14 @@
+<!--@ title="Merehääl festival — example design by Pilk" desc="Example landing page for a concert: a poster with a countdown, a schedule and tickets." layout="bare" i18n="off" robots="noindex" body="demo d-con" type="landing" ex="concert" -->
+<section class="cn-hero">
+  <svg class="cn-waves" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80Q150 20 300 80T600 80T900 80T1200 80"/><path d="M0 150Q150 90 300 150T600 150T900 150T1200 150"/><path d="M0 220Q150 160 300 220T600 220T900 220T1200 220"/></svg>
+  <div class="dw"><p class="cn-date">{{i:calendar-days}}12–14 June · Noblessner, Tallinn</p><h1>Live by<br>the sea</h1>
+    <p class="cn-count"><b id="cnDays">0</b><span>days to go</span><a href="#tickets">Get tickets {{i:arrow-right}}</a></p></div>
+</section>
+<section class="dw cn-sched"><h2>Who plays when</h2>
+  <div class="cn-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-d="0">Friday</button><button type="button" role="tab" aria-selected="false" data-d="1">Saturday</button><button type="button" role="tab" aria-selected="false" data-d="2">Sunday</button></div>
+  <ul class="cn-list" id="cnList"></ul>
+</section>
+<section class="dw cn-tix" id="tickets"><h2>Tickets</h2>
+  <ul><li data-reveal><b>One day</b><span>any day, all stages</span><em>€29</em></li><li data-reveal><b>Weekend</b><span>three days, one wristband</span><em>€69</em></li><li data-reveal><b>Family</b><span>two adults, up to three children</span><em>€119</em></li></ul>
+  <p>{{i:ticket}}Children under seven come in free. Wristbands are picked up at the gate.</p></section>
+<footer class="dw cn-foot"><p>{{i:map-pin}}Tram 2 to Noblessner, five minutes on foot.</p><p>Gates open at 16. Bring a jumper: it is the sea.</p></footer>

@@ -6,7 +6,7 @@ Page syntax: {{i:name}} 18px icon, {{I:name}} 28px icon, {{x:name}} bare svg, {{
 Front matter: <!--@ title="" desc="" js="" nav="" body="" robots="noindex" -->
 Translations: src/i18n/<lang>.json maps ids of text runs to translated runs (keep tags and {{...}} as they are);
 UI strings and catalogue data for JS and for the renderers live in js/i18n.js."""
-import re, os, sys, json, shutil, hashlib, pathlib, subprocess, datetime
+import math, re, os, sys, json, shutil, hashlib, pathlib, subprocess, datetime
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPO = ROOT.name == '_dev'
 ASSETS = ROOT.parent if REPO else ROOT
@@ -14,6 +14,7 @@ OUT = ROOT.parent if REPO else ROOT / 'site'
 SRC = ROOT / 'src'
 CFG = json.loads((ROOT / 'config.json').read_text())
 BASE, LANGS = CFG['base'].rstrip('/'), CFG['langs']
+EMAIL = CFG.get('email') or 'hello@pilk.studio'
 ICONS = pathlib.Path(os.environ.get('LUCIDE', '/tmp/pk/node_modules/lucide-static/icons'))
 OGL = {'en': 'en_US', 'et': 'et_EE', 'ru': 'ru_RU'}
 JS_ICONS = ['plus', 'check', 'x', 'trash-2', 'arrow-right', 'layers', 'play', 'monitor', 'smartphone', 'printer',
@@ -116,8 +117,37 @@ def guide_rows(c, t, lang):
     o = []
     for i in c['packs']['all']['sizes']:
         f, r = c['formats'][i], c['rules'][i]
-        o.append('<tr data-id="%s" data-g="%s"><td><div class="guide-pv"></div></td><td><b>%s</b><span>%s</span></td><td>%s</td><td>%s</td><td>%s</td></tr>' % (i, f['g'], esc(f['n']), label(f, t), esc(f['where']), esc(r[0]), esc(c['files'][r[1]])))
+        o.append('<tr data-id="%s" data-g="%s"><td><div class="guide-pv"></div></td><td><a href="size-%s.html"><b>%s</b></a><span>%s</span></td><td>%s</td><td>%s</td><td>%s</td></tr>' % (i, f['g'], i, esc(f['n']), label(f, t), esc(f['where']), esc(r[0]), esc(c['files'][r[1]])))
     return ''.join(o)
+def ratio(f):
+    w, h = f.get('lw', f['w']), f.get('lh', f['h']); g = math.gcd(w, h); a, b = w // g, h // g
+    if max(a, b) <= 20: return '%d:%d' % (a, b)
+    return ('%s:1' % ('%.1f' % (w / h)).rstrip('0').rstrip('.')) if w >= h else ('1:%s' % ('%.1f' % (h / w)).rstrip('0').rstrip('.'))
+def lay_class(f):
+    r = f['w'] / f['h']
+    return 'strip' if r >= 5.5 else 'wide' if r >= 3.2 else 'landscape' if r >= 1.45 else 'square' if r > .82 else 'portrait' if r >= .45 else 'tall'
+LAY = {'strip': 'Everything sits on one line: logo, headline, button. The second line is dropped, and the button stays big enough to hit.',
+       'wide': 'The headline takes the left in up to two lines, the button stands on the right, and the shape closes the edge.',
+       'landscape': 'Words on the left, the shape on the right, the button right under the headline.',
+       'square': 'The shape gets the top, the headline sits below in two lines, the button comes last.',
+       'portrait': 'Tall art on top, words stacked under it, the button at the bottom where the thumb rests.',
+       'tall': 'Narrow letters keep their height, words are stacked one under another, logo on top and button at the bottom.'}
+GRP = {'display': 'Google Ads accepts uploaded images up to 150 KB and HTML5 banners up to 600 KB. We keep every file under those limits and name it for upload.',
+       'social': 'You get PNG and JPG, kept light. The platform puts its own buttons and captions around the picture, so the words stay away from the edges.',
+       'print': 'You get a vector PDF in CMYK with 3 mm bleed, the extra edge that trimming needs. Very large formats are made at 1:10 scale, which print shops accept.'}
+def size_slots(c, t, lang, i):
+    f, r = c['formats'][i], c['rules'][i]; g = f['g']; pk = c['packs'][g]; lab = label(f, t)
+    low = min(tr[g] for tr in c['tiers'].values())
+    fact = lambda ic, k, v: '<div><dt>{{i:%s}}%s</dt><dd>%s</dd></div>' % (ic, t(k), v)
+    facts = (fact('map-pin', 'Where it runs', esc(f['where'])) + fact('scaling', 'Size', lab) + fact('ratio', 'Aspect ratio', ratio(f)) +
+             fact('file-text', 'Files', esc(c['files'][r[1]])) + fact('layers', 'In our packs', esc(t('{pack}, {n} sizes', pack=pk['n'], n=len(pk['sizes'])) + ' · ' + t('from {price}', price=money(low, lang)))))
+    sibs = ''.join('<li><a href="size-%s.html">%s<b>%s</b><span>%s</span></a></li>' % (x, mini(c['formats'][x]), esc(c['formats'][x]['n']), label(c['formats'][x], t)) for x in pk['sizes'] if x != i)
+    crumbs = '<a href="index.html">%s</a><span aria-hidden="true">/</span><a href="sizes.html">%s</a><span aria-hidden="true">/</span><span>%s</span>' % (t('Home'), t('Size guide'), esc(f['n']))
+    cta = '<a class="btn" href="brief.html">%s {{i:arrow-right}}</a><a class="link" href="shop.html">%s</a>' % (t('Get this size free'), t('Browse sets'))
+    text = json.dumps({'head': t('Your headline here'), 'sub': t('A second line'), 'cta': t('Button'), 'brand': t('Logo')}, ensure_ascii=False).replace("'", '’')
+    return {'sz.id': i, 'sz.h1': esc(f['n']) + ', ' + lab, 'sz.rule': esc(r[0]), 'sz.group': esc(pk['short'] + ' · ' + f['where']), 'sz.facts': facts, 'sz.sibs': sibs, 'sz.crumbs': crumbs, 'sz.cta': cta, 'sz.textattr': " data-text='%s'" % esc(text),
+            'sz.hlay': t('How we lay it out'), 'sz.lay': t(LAY[lay_class(f)]), 'sz.hfiles': t('Files you get'), 'sz.grp': t(GRP[g]), 'sz.hsib': esc(t('Other sizes in the {pack}', pack=pk['n'])), 'sz.all': t('All 26 sizes'),
+            'sz.title': esc(t('{name} banner size {size}: where it runs and the rule', name=f['n'], size=lab)) + ' — Pilk', 'sz.desc': esc(r[0] + ' ' + t('Where it runs') + ': ' + f['where'] + '. ' + t(GRP[g]))}
 def set_slots(c, t, lang, d):
     tr = c['tiers'][d['tier']]
     packs = ''.join('<label class="opt-row"><input type="radio" name="pack" value="%s"%s><span><b>{{i:%s}}%s</b><small>%s</small></span><span class="p-t">%s</span></label>' % (k, ' checked' if k == 'display' else '', c['packs'][k]['icon'], esc(t('{pack}, {n} sizes', pack=c['packs'][k]['n'], n=len(c['packs'][k]['sizes']))), esc(c['packs'][k]['plain']), money(tr[k], lang)) for k in ['display', 'social', 'print', 'all'])
@@ -133,12 +163,12 @@ def set_slots(c, t, lang, d):
 
 # ---------- SEO ----------
 def url_of(lang, fname): return BASE + '/' + ('' if lang == 'en' else lang + '/') + ('' if fname == 'index.html' else fname)
-def jsonld(fname, lang, c, t, d, title, desc):
+def jsonld(fname, lang, c, t, d, title, desc, fid=None):
     g, home = [], url_of(lang, 'index.html')
     def crumbs(items): return {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(items)]}
-    names = {'shop.html': t('Shop'), 'studio.html': t('Services'), 'sizes.html': t('Size guide'), 'faq.html': 'FAQ', 'contact.html': t('Contact'), 'brief.html': t('Brief')}
+    names = {'shop.html': t('Shop'), 'web.html': t('Websites'), 'studio.html': t('Services'), 'sizes.html': t('Size guide'), 'faq.html': 'FAQ', 'contact.html': t('Contact'), 'brief.html': t('Brief')}
     if fname == 'index.html':
-        g.append({'@type': 'Organization', '@id': BASE + '/#org', 'name': 'Pilk Studio', 'url': BASE + '/', 'logo': BASE + '/img/logo.png', 'email': 'hello@pilk.studio',
+        g.append({'@type': 'Organization', '@id': BASE + '/#org', 'name': 'Pilk Studio', 'url': BASE + '/', 'logo': BASE + '/img/logo.png', 'email': EMAIL,
                   'address': {'@type': 'PostalAddress', 'addressLocality': 'Tallinn', 'addressCountry': 'EE'}, 'areaServed': ['EE', 'LV', 'LT', 'FI'], 'knowsLanguage': ['en', 'et', 'ru']})
         g.append({'@type': 'WebSite', 'name': 'Pilk', 'url': home, 'inLanguage': lang, 'publisher': {'@id': BASE + '/#org'}})
     elif d:
@@ -147,6 +177,8 @@ def jsonld(fname, lang, c, t, d, title, desc):
                   'category': c['cats'][d['cat']], 'image': BASE + '/img/set-%s%s.jpg' % (d['id'], '' if lang == 'en' else '-' + lang), 'url': url_of(lang, fname),
                   'offers': {'@type': 'AggregateOffer', 'priceCurrency': 'EUR', 'lowPrice': tr['print'], 'highPrice': tr['all'], 'offerCount': 4, 'availability': 'https://schema.org/InStock'}})
         g.append(crumbs([(t('Home'), home), (t('Shop'), url_of(lang, 'shop.html')), (d['name'], url_of(lang, fname))]))
+    elif fid:
+        g.append(crumbs([(t('Home'), home), (t('Size guide'), url_of(lang, 'sizes.html')), (c['formats'][fid]['n'], url_of(lang, fname))]))
     elif fname in names:
         g.append(crumbs([(t('Home'), home), (names[fname], url_of(lang, fname))]))
         if fname == 'shop.html':
@@ -181,7 +213,7 @@ def build(extract=False):
         OUT.mkdir()
         for dd in ('css', 'js', 'fonts', 'img'):
             if (ASSETS / dd).exists(): shutil.copytree(ASSETS / dd, OUT / dd)
-    if not extract: (OUT / 'js' / 'icons.js').write_text('window.PILK=window.PILK||{};PILK.icons=' + json.dumps({n: svg(n, 'ico-s') for n in JS_ICONS}) + ';\n')
+    if not extract: (OUT / 'js' / 'icons.js').write_text('window.PILK=window.PILK||{};PILK.icons=' + json.dumps({n: svg(n, 'ico-s') for n in JS_ICONS}) + ';PILK.cfg=' + json.dumps({'form': CFG.get('form', ''), 'email': EMAIL}) + ';\n')
     sources = {f.name: f.read_text() for f in sorted((SRC / 'pages').glob('*.html'))}
     indexable, today, count = [], datetime.date.today().isoformat(), 0
     for lang in (['en'] if extract else LANGS):
@@ -193,17 +225,21 @@ def build(extract=False):
         D = None if lang == 'en' else json.loads((SRC / 'i18n' / (lang + '.json')).read_text())
         odir = OUT if lang == 'en' else OUT / lang
         if not extract: odir.mkdir(exist_ok=True)
-        jobs = [(n, s, None) for n, s in sources.items() if n != 'set.html'] + [('set-%s.html' % d['id'], sources['set.html'], d) for d in c['designs']]
-        for fname, raw, d in jobs:
+        jobs = ([(n, s, None, None) for n, s in sources.items() if n not in ('set.html', 'size.html')] + [('set-%s.html' % d['id'], sources['set.html'], d, None) for d in c['designs']] +
+                [('size-%s.html' % i, sources['size.html'], None, i) for i in c['packs']['all']['sizes']])
+        for fname, raw, d, fid in jobs:
             m = re.match(r'<!--@(.*?)-->\s*', raw, re.S)
             meta = dict(re.findall(r'(\w+)="(.*?)"', m.group(1))) if m else {}
-            body = translate(raw[m.end():] if m else raw, D, bag)
-            for x, y in FIX.get(lang, []): body = body.replace(x, y)
-            body = loc_money(body, lang)
-            title, desc = tr1(meta.get('title', 'Pilk'), D, bag), tr1(meta.get('desc', ''), D, bag)
+            bare, raw_only = meta.get('layout') == 'bare', meta.get('i18n') == 'off'   # example sites: own layout, text left as written
+            body = raw[m.end():] if raw_only else translate(raw[m.end():] if m else raw, D, bag)
+            if not raw_only:
+                for x, y in FIX.get(lang, []): body = body.replace(x, y)
+                body = loc_money(body, lang)
+            title, desc = (meta.get('title', 'Pilk'), meta.get('desc', '')) if raw_only else (tr1(meta.get('title', 'Pilk'), D, bag), tr1(meta.get('desc', ''), D, bag))
+            dbar = translate(part('demobar'), D, bag)
             head, hdr, foot = translate(part('head'), D, bag), translate(part('header'), D, bag), translate(part('footer'), D, bag)
             if extract: continue
-            S = set_slots(c, t, lang, d) if d else {}
+            S = set_slots(c, t, lang, d) if d else size_slots(c, t, lang, fid) if fid else {}
             if '{{shopItems}}' in body: S['shopItems'] = shop_items(c, t, lang)
             if '{{homeShelf}}' in body: S['homeShelf'] = home_shelf(c, t, lang)
             if '{{guideRows}}' in body: S['guideRows'] = guide_rows(c, t, lang)
@@ -214,10 +250,16 @@ def build(extract=False):
             if nav: hdr = hdr.replace('data-nav="%s"' % nav, 'data-nav="%s" aria-current="page"' % nav)
             noindex = meta.get('robots') == 'noindex'
             head = (head.replace('{{lang}}', lang).replace('{{title}}', title).replace('{{desc}}', desc).replace('{{body}}', meta.get('body', ''))
-                    .replace('{{bodyattr}}', ' data-set="%s"' % d['id'] if d else '').replace('{{seo}}', seo(fname, lang, title, desc, noindex, jsonld(fname, lang, c, t, d, title, desc), d)))
+                    .replace('{{bodyattr}}', ' data-set="%s"' % d['id'] if d else '').replace('{{seo}}', seo(fname, lang, title, desc, noindex, jsonld(fname, lang, c, t, d, title, desc, fid), d)))
             js = ''.join('<script src="js/%s.js"></script>' % j for j in meta.get('js', '').split() if j)
-            html = icons(head + hdr.replace('{{langs}}', links) + '<main id="main">' + body + '</main>' + foot.replace('{{pagejs}}', js))
-            if pre: html = html.replace('href="css/', 'href="../css/').replace('src="js/', 'src="../js/')
+            if bare:
+                html = icons(head.replace('</head>', '<link rel="stylesheet" href="css/demo.css">\n</head>') + dbar.replace('{{demo.href}}', 'brief.html?type=%s&amp;ex=%s' % (meta.get('type', 'site'), meta.get('ex', ''))) +
+                             '<main id="main">' + body + '</main><script src="js/motion-core.js"></script><script src="js/demo.js"></script>\n</body>\n</html>\n')
+            else: html = icons(head + hdr.replace('{{langs}}', links) + '<main id="main">' + body + '</main>' + foot.replace('{{pagejs}}', js))
+            soc = ''.join('<a class="link" href="%s" rel="me noopener">%s</a>' % (CFG[k], n) for k, n in (('instagram', 'Instagram'), ('tiktok', 'TikTok')) if CFG.get(k))
+            html = html.replace('{{social}}', icons('<p class="note ftr-soc">{{i:at-sign}}%s</p>' % soc) if soc else '').replace('hello@pilk.studio', EMAIL)
+            if not CFG.get('demo', True): html = re.sub(r'<span data-demo>.*?</span>', '', html)
+            if pre: html = html.replace('href="css/', 'href="../css/').replace('src="js/', 'src="../js/').replace('src="img/', 'src="../img/')
             (odir / fname).write_text(html); count += 1
             if lang == 'en' and not noindex: indexable.append(fname)
     if extract:

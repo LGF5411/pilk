@@ -17,6 +17,9 @@
         <label class="opt-row"><input type="checkbox" name="need" value="motion"><span><b>{{i:clapperboard}}Animated HTML5 banners</b><small>Gentle motion, under 600 KB per size.</small></span><span class="p-t">€590</span></label>
         <label class="opt-row"><input type="checkbox" name="need" value="copy"><span><b>{{i:languages}}Copy</b><small>Headlines that fit, in English, Estonian or Russian.</small></span><span class="p-t">€90</span></label>
         <label class="opt-row"><input type="checkbox" name="need" value="templates"><span><b>{{i:swatch-book}}Templates for my team</b><small>Editable Figma and Canva sets.</small></span><span class="p-t">€290</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="landing"><span><b>{{i:panel-top}}Landing page</b><small>One page for one offer, matched to your ad.</small></span><span class="p-t">€490</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="site"><span><b>{{i:layout-grid}}Small-business site</b><small>Up to seven pages, two languages.</small></span><span class="p-t">€1,190</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="seo"><span><b>{{i:search-check}}SEO setup</b><small>A one-time setup with a before-and-after list.</small></span><span class="p-t">€190</span></label>
         <label class="opt-row"><input type="checkbox" name="need" value="always"><span><b>{{i:refresh-cw}}Always-on</b><small>Up to 60 adaptations a month.</small></span><span class="p-t">€890/mo</span></label>
         <label class="opt-row"><input type="checkbox" name="need" value="unsure"><span><b>{{i:circle-help}}Not sure yet</b><small>We’ll suggest what fits your goal.</small></span><span class="p-t"></span></label>
       </div>
@@ -24,8 +27,8 @@
     </fieldset>
 
     <fieldset class="step-f" data-step="2" hidden>
-      <legend>Where will it run?</legend><p class="lead">We turn your answer into a list of sizes. You can change it later.</p>
-      <div class="opts" id="channels">
+      <legend id="s2Legend">Where will it run?</legend><p class="lead" id="s2Lead">We turn your answer into a list of sizes. You can change it later.</p>
+      <div id="chBlock"><div class="opts" id="channels">
         <label class="opt-row"><input type="checkbox" name="ch" value="google"><span><b>{{i:monitor}}Google Ads and websites</b><small>Display sizes from 320 × 50 to 970 × 250</small></span><span class="p-t">8 sizes</span></label>
         <label class="opt-row"><input type="checkbox" name="ch" value="meta"><span><b>{{i:smartphone}}Facebook and Instagram</b><small>Posts, stories and link ads</small></span><span class="p-t">4 sizes</span></label>
         <label class="opt-row"><input type="checkbox" name="ch" value="tiktok"><span><b>{{i:smartphone}}TikTok</b><small>Vertical 9:16</small></span><span class="p-t">1 size</span></label>
@@ -34,12 +37,18 @@
         <label class="opt-row"><input type="checkbox" name="ch" value="print"><span><b>{{i:printer}}Print</b><small>Roll-up, A1 poster, A5 flyer</small></span><span class="p-t">3 sizes</span></label>
         <label class="opt-row"><input type="checkbox" name="ch" value="outdoor"><span><b>{{i:map-pin}}Outdoor</b><small>Billboard, citylight, mesh banner</small></span><span class="p-t">3 sizes</span></label>
       </div>
-      <p class="err" id="chErr" hidden>{{i:triangle-alert}}Pick at least one place.</p>
+      <p class="err" id="chErr" hidden>{{i:triangle-alert}}Pick at least one place.</p></div>
+      <div id="webBlock" hidden>
+        <div class="field" id="pagesF"><span class="label">Pages on the site</span><div class="cta-row web-chk" id="pages"><label class="chk"><input type="checkbox" name="page" value="Home" checked>Home</label><label class="chk"><input type="checkbox" name="page" value="Services" checked>Services</label><label class="chk"><input type="checkbox" name="page" value="Prices" checked>Prices</label><label class="chk"><input type="checkbox" name="page" value="About" checked>About</label><label class="chk"><input type="checkbox" name="page" value="Gallery">Gallery</label><label class="chk"><input type="checkbox" name="page" value="Questions">Questions</label><label class="chk"><input type="checkbox" name="page" value="Contact" checked>Contact</label><label class="chk"><input type="checkbox" name="page" value="Booking">Booking</label><label class="chk"><input type="checkbox" name="page" value="News">News</label></div><p class="note">Seven pages are included. Each extra page is +€90.</p></div>
+        <div class="field"><span class="label">Texts and photos</span><div class="cta-row web-chk"><label class="chk"><input type="radio" name="content" value="ready" checked>I have them</label><label class="chk"><input type="radio" name="content" value="notes">I have notes, please write the texts</label></div></div>
+        <div class="field"><span class="label">Domain</span><div class="cta-row web-chk"><label class="chk"><input type="radio" name="domain" value="yes" checked>I have one</label><label class="chk"><input type="radio" name="domain" value="no">Not yet, help me choose</label></div></div>
+      </div>
     </fieldset>
 
     <fieldset class="step-f" data-step="3" hidden>
-      <legend>What are you promoting?</legend><p class="lead">A few words are enough. We’ll ask the rest in our reply.</p>
-      <div class="field"><label for="offer">The offer</label><input id="offer" name="offer" maxlength="80" placeholder="e.g. Winter sale −30% until 8 December" required data-msg="Tell us the offer in a few words."><p class="err" hidden></p></div>
+      <legend id="s3Legend">What are you promoting?</legend><p class="lead">A few words are enough. We’ll ask the rest in our reply.</p>
+      <div class="field"><label for="offer" id="offerLabel">The offer</label><input id="offer" name="offer" maxlength="80" placeholder="e.g. Winter sale −30% until 8 December" required data-msg="Tell us the offer in a few words."><p class="err" hidden></p></div>
+      <div class="field" id="wishF" hidden><label for="wish">Your wishes <span class="opt-t">(optional)</span></label><textarea id="wish" name="wish" maxlength="600" placeholder="e.g. like the Café example, but darker, with a booking form"></textarea></div>
       <div class="field"><span class="label">Languages</span><div class="cta-row" style="gap:12px 24px" id="langs"><label class="chk"><input type="checkbox" name="lang" value="EN" checked>English</label><label class="chk"><input type="checkbox" name="lang" value="ET">Estonian</label><label class="chk"><input type="checkbox" name="lang" value="RU">Russian</label></div></div>
       <div class="field"><label for="site">Your website <span class="opt-t">(optional)</span></label><input id="site" name="site" type="url" inputmode="url" placeholder="https://"><p class="err" hidden></p></div>
       <div class="field" id="fileField"><span class="label" id="fileLabel">Logo, photos or your current banner <span class="opt-t">(optional)</span></span><label class="file-drop">{{i:download}}<span id="fileNames">Choose files, or drop them here</span><input type="file" id="files" multiple accept="image/*,.pdf,.zip,.fig,.psd,.ai"></label><p class="err" id="fileErr" hidden>{{i:triangle-alert}}The free test needs the banner you want resized.</p></div>
@@ -81,7 +90,9 @@
     <h2>Your brief so far</h2>
     <dl>
       <dt>{{i:layers}}Needs</dt><dd id="sNeeds">—</dd>
-      <dt>{{i:monitor}}Sizes</dt><dd id="sSizes">—</dd>
+      <dt id="sSizesT">{{i:monitor}}Sizes</dt><dd id="sSizes">—</dd>
+      <dt id="sPagesT" hidden>{{i:file-text}}Pages</dt><dd id="sPages" hidden>—</dd>
+      <dt id="sExT" hidden>{{i:eye}}Example</dt><dd id="sEx" hidden>—</dd><input type="hidden" name="example" id="exIn">
       <dt>{{i:languages}}Languages</dt><dd id="sLangs">EN</dd>
       <dt>{{i:calendar-days}}Needed by</dt><dd id="sDate">—</dd>
     </dl>

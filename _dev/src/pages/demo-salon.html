@@ -1,0 +1,24 @@
+<!--@ title="Sõnajalg salon — example design by Pilk" desc="Example small-business site for a beauty salon: build your visit and see the time and the price." layout="bare" i18n="off" robots="noindex" body="demo d-salon" type="site" ex="salon" -->
+<i class="sl-blob" aria-hidden="true"></i>
+<header class="dw sl-top"><a class="sl-logo" href="#main">Sõnajalg</a><nav><a href="#visit">Services</a><a href="#team">Team</a><a href="#find">Find us</a></nav></header>
+<section class="dw sl-hero"><h1>Pick what you need.<br>See the time and the price.</h1><p>No calls, no “from” prices. Tick the services and the visit adds itself up.</p></section>
+<section class="dw sl-visit" id="visit">
+  <div class="sl-groups">
+    <h2>{{i:scissors}}Hair</h2>
+    <label><input type="checkbox" data-p="38" data-m="45"><b>Cut and style</b><span>45 min</span><em>€38</em></label>
+    <label><input type="checkbox" data-p="64" data-m="90"><b>Colour, one tone</b><span>90 min</span><em>€64</em></label>
+    <label><input type="checkbox" data-p="22" data-m="30"><b>Wash and blow-dry</b><span>30 min</span><em>€22</em></label>
+    <h2>{{i:sparkles}}Face</h2>
+    <label><input type="checkbox" data-p="45" data-m="50"><b>Deep cleanse</b><span>50 min</span><em>€45</em></label>
+    <label><input type="checkbox" data-p="18" data-m="20"><b>Brow shape and tint</b><span>20 min</span><em>€18</em></label>
+    <h2>{{i:leaf}}Hands</h2>
+    <label><input type="checkbox" data-p="32" data-m="60"><b>Manicure with gel</b><span>60 min</span><em>€32</em></label>
+    <label><input type="checkbox" data-p="15" data-m="20"><b>Hand ritual</b><span>20 min</span><em>€15</em></label>
+  </div>
+  <aside class="sl-sum" aria-live="polite"><p class="sl-k">Your visit</p><p class="sl-empty" id="slEmpty">Tick a service to start.</p><ul id="slList"></ul>
+    <dl><div><dt>{{i:clock}}Time</dt><dd id="slTime">0 min</dd></div><div><dt>{{i:euro}}Total</dt><dd id="slTotal">€0</dd></div></dl>
+    <a class="sl-btn" href="#find">Book this visit {{i:arrow-right}}</a><p class="sl-note">You pay at the salon. Cancel free up to 12 hours before.</p></aside>
+</section>
+<section class="dw sl-team" id="team"><h2>Three pairs of hands</h2>
+  <ul><li data-reveal><b>Marta</b><span>Colour, long hair, patient with first-timers</span></li><li data-reveal data-delay="80"><b>Ingrid</b><span>Short cuts, fringes, brows</span></li><li data-reveal data-delay="160"><b>Dasha</b><span>Skin, hands, a very quiet room</span></li></ul></section>
+<footer class="dw sl-foot" id="find"><p>{{i:map-pin}}Telliskivi 60, Tallinn</p><p>{{i:clock}}Tue–Sat 10–19</p><p>{{i:phone}}+372 5550 0177</p></footer>
