@@ -16,7 +16,7 @@
   var cf = $('#contactForm');
   if (cf) {
     $('#ctCall').addEventListener('change', function (e) { $('#ctPhoneF').hidden = !e.target.checked; });
-    cf.addEventListener('submit', function (e) { e.preventDefault(); if (!P.check(cf)) return; cf.hidden = true; var d = $('#contactDone'); d.hidden = false; d.setAttribute('tabindex', '-1'); d.focus(); });
+    cf.addEventListener('submit', function (e) { e.preventDefault(); if (!P.check(cf)) return; P.send(cf, function () { cf.hidden = true; var d = $('#contactDone'); d.hidden = false; d.setAttribute('tabindex', '-1'); d.focus(); }); });
   }
 
   /* size guide: rows are static HTML, previews are live */

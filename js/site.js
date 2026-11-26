@@ -177,3 +177,22 @@
     [].forEach.call(t.querySelectorAll('tbody tr'), function (r) { [].forEach.call(r.children, function (c, i) { if (c.tagName === 'TD' && h[i]) c.setAttribute('data-th', h[i]); }); });
   });
 })();
+
+/* forms: with "form" set in _dev/config.json they are really sent; without it the site stays a demo */
+(function () {
+  var P = window.PILK; P.cfg = P.cfg || {};
+  P.send = function (form, done) {
+    if (!P.cfg.form) { done(); return; }
+    var fd = new FormData(), b = form.querySelector('[type=submit]');
+    [].forEach.call(form.elements, function (el) {
+      var k = el.name || el.id; if (!k || el.type === 'submit' || el.type === 'button' || el.type === 'file') return;
+      if (el.type === 'checkbox' || el.type === 'radio') { if (el.checked) fd.append(k, el.value || 'yes'); } else if (el.value) fd.append(k, el.value);
+    });
+    fd.append('page', location.href); if (b) b.disabled = true;
+    fetch(P.cfg.form, { method: 'POST', headers: { Accept: 'application/json' }, body: fd }).then(function (r) { if (!r.ok) throw 0; done(); }).catch(function () {
+      if (b) b.disabled = false;
+      var m = form.querySelector('.send-err'); if (!m) { m = document.createElement('p'); m.className = 'err send-err'; m.setAttribute('role', 'alert'); form.appendChild(m); }
+      m.textContent = P.t('It didn’t send. Please write to {email}.', { email: P.cfg.email });
+    });
+  };
+})();
