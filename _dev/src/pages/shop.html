@@ -1,0 +1,21 @@
+<!--@ title="Ready-made banner sets — Pilk" desc="18 banner set designs, 26 sizes each. Type your headline and preview every size before you buy." js="shop" nav="shop" body="p-shop" -->
+<section class="wrap page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Shop</span></nav>
+  <h1 class="h1" data-reveal>Ready-made banner sets</h1>
+  <p class="lead" data-reveal data-delay="80">Pick a design, type your words, see every size. Editable files right after checkout, or filled in by us within 24 hours.</p>
+</section>
+<section class="wrap shop-tools" aria-label="Filters">
+  <label class="words-field"><span>{{i:type}}Your headline</span><input id="shopWords" maxlength="42" placeholder="Your offer in a few words" autocomplete="off" spellcheck="false"><button type="button" class="words-reset" aria-label="Clear your headline" hidden>{{i:rotate-ccw}}</button></label>
+  <div class="cats" id="cats" role="group" aria-label="Category"></div>
+  <div class="filters">
+    <select id="fStyle" aria-label="Style"><option value="">Any style</option><option value="bold">Bold</option><option value="soft">Soft</option><option value="calm">Calm</option></select>
+    <select id="fSort" aria-label="Sort by"><option value="pop">Most popular</option><option value="new">New first</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
+    <label class="chk"><input type="checkbox" id="fAnim">{{i:play}}Has an animated version</label>
+    <p class="count" id="count" aria-live="polite"></p>
+  </div>
+</section>
+<section class="wrap" aria-label="Sets">
+  <div class="cat-grid" id="grid">{{shopItems}}</div>
+  <div class="empty" id="empty" hidden>{{I:search}}<h2 class="h3">No sets match these filters.</h2><p class="note">Try another style, or see them all.</p><button class="btn btn-line btn-sm" type="button" id="clear">Show all sets</button></div>
+  <div class="custom-cta"><div><h2 class="h3">Need a design only you have?</h2><p class="note">Custom set: 12 sizes, free first sketch in 48 hours, €390.</p></div><div class="cta-row"><a class="link" href="brief.html?type=test">Free resize test</a><a class="btn" href="brief.html">Start a brief {{i:arrow-right}}</a></div></div>
+</section>

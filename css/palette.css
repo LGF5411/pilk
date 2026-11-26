@@ -1,0 +1,19 @@
+/* palette seed 23 | triad | base hue 333 | ink/bg 16.7:1 */
+:root{
+  --bg: #fcf4fa;
+  --surface: #efece0;
+  --ink: #21101f;
+  --muted: #6a5766;
+  --accent: #de9ad2;
+  --accent2: #e7d59a;
+  --accent-ink: #701067;
+}
+@supports (color: oklch(0 0 0)){:root{
+  --bg: oklch(0.974 0.012 333.0);
+  --surface: oklch(0.941 0.015 93.0);
+  --ink: oklch(0.205 0.038 333.0);
+  --muted: oklch(0.480 0.035 333.0);
+  --accent: oklch(0.771 0.108 333.0);
+  --accent2: oklch(0.873 0.078 93.0);
+  --accent-ink: oklch(0.385 0.158 333.0);
+}}

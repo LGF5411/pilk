@@ -1,0 +1,53 @@
+<!--@ title="{{set.title}}" desc="{{set.desc}}" js="set" nav="shop" body="p-set" -->
+<div class="wrap set-top">
+  <div class="set-stage">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="shop.html">Shop</a><span aria-hidden="true">/</span><span>{{set.name}}</span></nav>
+    <div class="set-canvas" id="setCanvas"><div class="real-pad" aria-hidden="true"></div><div class="sheet" id="sheet" hidden></div><span class="sel-dim" id="setDim"></span></div>
+    <div class="set-bar">
+      <div class="seg" role="group" aria-label="View"><button type="button" aria-pressed="true" data-view="one">One size</button><button type="button" aria-pressed="false" data-view="all">All sizes</button></div>
+      <label class="chk" id="realWrap"><input type="checkbox" id="real">{{i:scan-eye}}Real size, 1:1</label>
+    </div>
+    <div class="sizes" id="sizes" role="group" aria-label="Sizes in this pack"></div>
+    <div class="set-words">
+      <div class="field"><label for="wHead">Headline</label><input id="wHead" maxlength="42" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="wSub">Second line</label><input id="wSub" maxlength="48" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="wCta">Button</label><input id="wCta" maxlength="18" autocomplete="off" spellcheck="false"></div>
+      <button class="btn btn-line btn-sm" type="button" id="wReset">{{i:rotate-ccw}}Reset</button>
+    </div>
+    <p class="note" style="margin-top:12px;display:flex">{{i:info}}Every size updates as you type, in English, Estonian or Russian. Your words stay in this browser.</p>
+  </div>
+  <aside class="set-buy" aria-label="Buy this set">
+    <p class="eyebrow">{{i:layers}}{{set.tag}}</p>
+    <h1 class="h2">{{set.name}}</h1>
+    <p class="lead">{{set.about}}</p>
+    <fieldset class="opts" id="packs"><legend>Pack</legend>{{set.packs}}</fieldset>
+    <fieldset class="opts" id="extras"><legend>Extras</legend>{{set.extras}}</fieldset>
+    <div class="total"><span>Total, VAT included</span><b id="total">{{set.total}}</b></div>
+    <div class="cta-row"><button class="btn" type="button" id="add">{{i:shopping-bag}}Add to cart</button><button class="btn btn-line" type="button" id="buyNow">Buy now</button></div>
+    <ul class="assure">
+      <li>{{i:download}}Editable files right after payment</li>
+      <li>{{i:key-round}}Commercial licence for one brand</li>
+      <li>{{i:languages}}Text in English, Estonian or Russian</li>
+      <li>{{i:rotate-ccw}}Full refund within 14 days if you haven’t downloaded</li>
+    </ul>
+  </aside>
+</div>
+<div class="wrap set-info">
+  <section><h2 class="h2">Sizes in this pack</h2><div class="cmp-wrap" style="margin-top:0"><table class="tbl" id="sizeTbl"><thead><tr><th scope="col">Size</th><th scope="col">Name</th><th scope="col">Where it runs</th></tr></thead><tbody>{{set.sizes}}</tbody></table></div></section>
+  <div class="set-side">
+    <section><h2 class="h2">What you get</h2><ul class="files">
+      <li>{{i:file-image}}<span>PNG and JPG for every size<small>Under 150 KB each, the Google Ads limit for images</small></span></li>
+      <li>{{i:swatch-book}}<span>Figma and Canva files<small>Change text and colours yourself in minutes</small></span></li>
+      <li>{{i:clapperboard}}<span>HTML5 zip, if you add animation<small>Under 600 KB, with a static backup image</small></span></li>
+      <li>{{i:printer}}<span>Print PDFs for print sizes<small>CMYK colours and 3 mm bleed: the extra margin a cutter needs</small></span></li>
+      <li>{{i:file-text}}<span>A list of sizes and where to upload each one</span></li>
+    </ul></section>
+    <section><h2 class="h2">Licence, in plain words</h2><p class="lead" style="font-size:16px">Use the set for one brand, in as many campaigns as you like, for as long as you like. Don’t resell the template itself. Every font in it is open-licence and free for commercial use.</p></section>
+  </div>
+</div>
+<section class="wrap related"><div class="sec-head"><h2 class="h2">More sets like this</h2><div class="side"><a class="link" href="shop.html">All sets {{i:arrow-right}}</a></div></div><div class="shelf shelf-3" id="related"></div></section>
+<div class="buybar" data-buybar data-after=".set-buy .cta-row" data-hide=".ftr" aria-label="Quick add">
+  <div class="buybar-t"><b id="barName">{{set.name}}</b><span id="barPack">{{set.pack}}</span></div>
+  <b id="barTotal" style="font-variant-numeric:tabular-nums">{{set.total}}</b>
+  <button class="btn btn-sm" type="button" id="barAdd">Add to cart</button>
+</div>

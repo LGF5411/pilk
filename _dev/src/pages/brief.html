@@ -1,0 +1,106 @@
+<!--@ title="Start a brief — Pilk" desc="Five short questions. The brief counts your banner sizes and shows a price and a date before you send it." js="brief" body="p-brief no-hide" -->
+<section class="wrap page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Brief</span></nav>
+  <h1 class="h1" data-reveal>Start a brief</h1>
+  <p class="lead" data-reveal data-delay="80">Five short questions, about three minutes. You see sizes, a price and a date before you send anything.</p>
+</section>
+<section class="wrap brief" id="briefWrap">
+  <form id="brief" novalidate>
+    <div class="progress"><span id="stepNo">Step 1 of 5</span><span class="progress-bar" aria-hidden="true"><i id="bar" style="transform:scaleX(.2)"></i></span></div>
+
+    <fieldset class="step-f" data-step="1">
+      <legend>What do you need?</legend><p class="lead">Pick everything that applies. Not sure? Pick the last one.</p>
+      <div class="opts" id="needs">
+        <label class="opt-row"><input type="checkbox" name="need" value="test"><span><b>{{i:gift}}Free resize test</b><small>Send one banner, get three sizes back within 24 working hours.</small></span><span class="p-t">Free</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="resize"><span><b>{{i:scaling}}Resize my banner</b><small>One approved design, every size you need.</small></span><span class="p-t">€190</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="sets"><span><b>{{i:layers}}A banner set from scratch</b><small>A key visual and 12–40 sizes.</small></span><span class="p-t">€390</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="motion"><span><b>{{i:clapperboard}}Animated HTML5 banners</b><small>Gentle motion, under 600 KB per size.</small></span><span class="p-t">€590</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="copy"><span><b>{{i:languages}}Copy</b><small>Headlines that fit, in English, Estonian or Russian.</small></span><span class="p-t">€90</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="templates"><span><b>{{i:swatch-book}}Templates for my team</b><small>Editable Figma and Canva sets.</small></span><span class="p-t">€290</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="always"><span><b>{{i:refresh-cw}}Always-on</b><small>Up to 60 adaptations a month.</small></span><span class="p-t">€890/mo</span></label>
+        <label class="opt-row"><input type="checkbox" name="need" value="unsure"><span><b>{{i:circle-help}}Not sure yet</b><small>We’ll suggest what fits your goal.</small></span><span class="p-t"></span></label>
+      </div>
+      <p class="err" id="needErr" hidden>{{i:triangle-alert}}Pick at least one, or “Not sure yet”.</p>
+    </fieldset>
+
+    <fieldset class="step-f" data-step="2" hidden>
+      <legend>Where will it run?</legend><p class="lead">We turn your answer into a list of sizes. You can change it later.</p>
+      <div class="opts" id="channels">
+        <label class="opt-row"><input type="checkbox" name="ch" value="google"><span><b>{{i:monitor}}Google Ads and websites</b><small>Display sizes from 320 × 50 to 970 × 250</small></span><span class="p-t">8 sizes</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="meta"><span><b>{{i:smartphone}}Facebook and Instagram</b><small>Posts, stories and link ads</small></span><span class="p-t">4 sizes</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="tiktok"><span><b>{{i:smartphone}}TikTok</b><small>Vertical 9:16</small></span><span class="p-t">1 size</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="linkedin"><span><b>{{i:building-2}}LinkedIn</b><small>Link ads, square posts and the page cover</small></span><span class="p-t">3 sizes</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="youtube"><span><b>{{i:play}}YouTube</b><small>Thumbnails</small></span><span class="p-t">1 size</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="print"><span><b>{{i:printer}}Print</b><small>Roll-up, A1 poster, A5 flyer</small></span><span class="p-t">3 sizes</span></label>
+        <label class="opt-row"><input type="checkbox" name="ch" value="outdoor"><span><b>{{i:map-pin}}Outdoor</b><small>Billboard, citylight, mesh banner</small></span><span class="p-t">3 sizes</span></label>
+      </div>
+      <p class="err" id="chErr" hidden>{{i:triangle-alert}}Pick at least one place.</p>
+    </fieldset>
+
+    <fieldset class="step-f" data-step="3" hidden>
+      <legend>What are you promoting?</legend><p class="lead">A few words are enough. We’ll ask the rest in our reply.</p>
+      <div class="field"><label for="offer">The offer</label><input id="offer" name="offer" maxlength="80" placeholder="e.g. Winter sale −30% until 8 December" required data-msg="Tell us the offer in a few words."><p class="err" hidden></p></div>
+      <div class="field"><span class="label">Languages</span><div class="cta-row" style="gap:12px 24px" id="langs"><label class="chk"><input type="checkbox" name="lang" value="EN" checked>English</label><label class="chk"><input type="checkbox" name="lang" value="ET">Estonian</label><label class="chk"><input type="checkbox" name="lang" value="RU">Russian</label></div></div>
+      <div class="field"><label for="site">Your website <span class="opt-t">(optional)</span></label><input id="site" name="site" type="url" inputmode="url" placeholder="https://"><p class="err" hidden></p></div>
+      <div class="field" id="fileField"><span class="label" id="fileLabel">Logo, photos or your current banner <span class="opt-t">(optional)</span></span><label class="file-drop">{{i:download}}<span id="fileNames">Choose files, or drop them here</span><input type="file" id="files" multiple accept="image/*,.pdf,.zip,.fig,.psd,.ai"></label><p class="err" id="fileErr" hidden>{{i:triangle-alert}}The free test needs the banner you want resized.</p></div>
+      <div class="field"><span class="label">A style to start from</span>
+        <div class="style-pick">
+          <label><input type="radio" name="style" value="bold"><span class="pv" data-banner="big-number" data-size="300x250" data-fw=".86" data-fh=".84" aria-hidden="true"></span><span>{{i:zap}}Bold</span></label>
+          <label><input type="radio" name="style" value="soft" checked><span class="pv" data-banner="soft-sale" data-size="300x250" data-fw=".86" data-fh=".84" aria-hidden="true"></span><span>{{i:sun}}Soft</span></label>
+          <label><input type="radio" name="style" value="calm"><span class="pv" data-banner="late-gallery" data-size="300x250" data-fw=".86" data-fh=".84" aria-hidden="true"></span><span>{{i:feather}}Calm</span></label>
+        </div></div>
+    </fieldset>
+
+    <fieldset class="step-f" data-step="4" hidden>
+      <legend>When, and roughly how much?</legend><p class="lead">A date helps us say yes or no honestly. The budget only helps us suggest the right plan.</p>
+      <div class="grid-2"><div class="field"><label for="date">Files needed by</label><input id="date" name="date" type="date" required data-msg="Pick a date, even a rough one."><p class="err" hidden></p></div></div>
+      <p class="note" id="dateNote" style="margin:-8px 0 22px"></p>
+      <div class="opts" id="budget">
+        <label class="opt-row"><input type="radio" name="budget" value="Under €500" checked><span><b>{{i:euro}}Under €500</b></span><span></span></label>
+        <label class="opt-row"><input type="radio" name="budget" value="€500–1,500"><span><b>{{i:euro}}€500–1,500</b></span><span></span></label>
+        <label class="opt-row"><input type="radio" name="budget" value="€1,500–5,000"><span><b>{{i:euro}}€1,500–5,000</b></span><span></span></label>
+        <label class="opt-row"><input type="radio" name="budget" value="Over €5,000"><span><b>{{i:euro}}Over €5,000</b></span><span></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="step-f" data-step="5" hidden>
+      <legend>Where do we send the answer?</legend><p class="lead">One reply, within two working hours. No newsletter, no calls you didn’t ask for.</p>
+      <div class="grid-2">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required data-msg="How should we address you?"><p class="err" hidden></p></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required data-msg="We need an email to reply."><p class="err" hidden></p></div>
+        <div class="field"><label for="company">Company <span class="opt-t">(optional)</span></label><input id="company" name="company" autocomplete="organization"></div>
+        <div class="field"><label for="phone">Phone <span class="opt-t">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label class="chk"><input type="checkbox" id="ok" required data-msg="Please tick this, so we may keep your brief.">We may keep this brief to reply to me</label><p class="err" hidden></p></div>
+    </fieldset>
+
+    <div class="step-nav"><button class="btn" type="submit" id="next">Next {{i:arrow-right}}</button><button class="link" type="button" id="back" hidden>Back</button></div>
+  </form>
+
+  <aside class="sum" aria-live="polite">
+    <h2>Your brief so far</h2>
+    <dl>
+      <dt>{{i:layers}}Needs</dt><dd id="sNeeds">—</dd>
+      <dt>{{i:monitor}}Sizes</dt><dd id="sSizes">—</dd>
+      <dt>{{i:languages}}Languages</dt><dd id="sLangs">EN</dd>
+      <dt>{{i:calendar-days}}Needed by</dt><dd id="sDate">—</dd>
+    </dl>
+    <p class="est" id="sEst">—</p>
+    <p class="note" id="sEstNote">An estimate. The final price is fixed in our reply.</p>
+    <p class="note" id="sSizeList" style="margin-top:14px"></p>
+  </aside>
+</section>
+<section class="wrap" id="briefDone" hidden>
+  <div class="done">
+    {{I:circle-check}}
+    <h2 class="h2" id="doneTitle">Brief received.</h2>
+    <p class="lead" id="doneLead"></p>
+    <ol>
+      <li>{{i:mail}}Within 2 working hours: our reply with sizes, price and date.</li>
+      <li>{{i:pen-tool}}Within 48 hours after you say yes: the free first sketch.</li>
+      <li>{{i:download}}Then the full set, files named for each platform.</li>
+    </ol>
+    <p class="note">This is a demo studio: nothing was sent anywhere.</p>
+    <div class="cta-row"><a class="btn" href="index.html">Back to home</a><a class="link" href="shop.html">Browse ready-made sets</a></div>
+  </div>
+</section>

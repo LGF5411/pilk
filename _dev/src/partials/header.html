@@ -1,0 +1,35 @@
+<header class="hdr" id="hdr">
+  <a class="logo" href="index.html" aria-label="Pilk, home"><span aria-hidden="true">p<span class="logo-i">ı<i class="logo-eye"><b></b></i></span>lk</span></a>
+  <nav class="nav" aria-label="Main">
+    <a href="shop.html" data-nav="shop">Shop</a>
+    <a href="studio.html" data-nav="studio">Services</a>
+    <a href="sizes.html" data-nav="sizes">Size guide</a>
+    <a href="index.html#pricing" data-nav="pricing">Prices</a>
+    <a href="faq.html" data-nav="faq">FAQ</a>
+    <a href="contact.html" data-nav="contact">Contact</a>
+  </nav>
+  <div class="hdr-end">
+    <nav class="lang" aria-label="Language">{{langs}}</nav>
+    <a class="hdr-cart" href="cart.html" aria-label="Cart">{{x:shopping-bag}}<b data-cart-count hidden>0</b></a>
+    <a class="btn btn-sm hdr-brief" href="brief.html">Start a brief</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-top">
+    <a class="logo" href="index.html" aria-label="Pilk, home"><span aria-hidden="true">p<span class="logo-i">ı<i class="logo-eye"><b></b></i></span>lk</span></a>
+    <button class="menu-close" type="button" data-menu-close>Close {{i:x}}</button>
+  </div>
+  <nav class="menu-nav" aria-label="Menu">
+    <a href="shop.html">Shop {{i:arrow-right}}</a>
+    <a href="studio.html">Services {{i:arrow-right}}</a>
+    <a href="sizes.html">Size guide {{i:arrow-right}}</a>
+    <a href="index.html#pricing">Prices {{i:arrow-right}}</a>
+    <a href="faq.html">FAQ {{i:arrow-right}}</a>
+    <a href="contact.html">Contact {{i:arrow-right}}</a>
+    <a href="cart.html">Cart {{i:arrow-right}}</a>
+  </nav>
+  <a class="btn" href="brief.html">Start a brief {{i:arrow-right}}</a>
+  <nav class="lang menu-lang" aria-label="Language">{{langs}}</nav>
+  <p class="note">{{i:mail}}hello@pilk.studio · Mon–Fri 9–18</p>
+</div>

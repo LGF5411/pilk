@@ -1,0 +1,56 @@
+<!--@ title="Cart — Pilk" desc="Your banner sets, extras and total with VAT." js="cart" body="p-cart no-hide" robots="noindex" -->
+<section class="wrap page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="shop.html">Shop</a><span aria-hidden="true">/</span><span id="crumb">Cart</span></nav>
+  <h1 class="h1" id="cartTitle">Your cart</h1>
+</section>
+<section class="wrap cart" id="cartView">
+  <div id="cartList"></div>
+  <aside class="sum" aria-label="Summary">
+    <h2>Summary</h2>
+    <dl class="totals" id="totals"></dl>
+    <form class="promo" id="promo"><label class="sr" for="code">Promo code</label><input class="input" id="code" placeholder="Promo code" autocomplete="off"><button class="btn btn-line btn-sm" type="submit">Apply</button></form>
+    <p class="note" id="promoMsg" style="margin-top:8px;display:flex"></p>
+    <button class="btn" type="button" id="toCheckout" style="width:100%;margin-top:20px">Checkout {{i:arrow-right}}</button>
+    <ul class="assure">
+      <li>{{i:download}}Editable files right after payment</li>
+      <li>{{i:receipt}}VAT invoice for every order</li>
+      <li>{{i:rotate-ccw}}Full refund within 14 days if you haven’t downloaded</li>
+    </ul>
+  </aside>
+</section>
+<section class="wrap cart" id="checkoutView" hidden>
+  <form id="checkout" novalidate>
+    <fieldset style="margin-bottom:14px"><legend class="h3" style="margin-bottom:16px">Contact and invoice</legend>
+      <div class="grid-2">
+        <div class="field"><label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="email" required data-msg="We send the files and the invoice here."><p class="err" hidden></p></div>
+        <div class="field"><label for="cName">Name</label><input id="cName" autocomplete="name" required data-msg="Who is the invoice for?"><p class="err" hidden></p></div>
+        <div class="field"><label for="cCompany">Company <span class="opt-t">(optional)</span></label><input id="cCompany" autocomplete="organization"></div>
+        <div class="field"><label for="cVat">VAT number <span class="opt-t">(optional)</span></label><input id="cVat" placeholder="EE123456789"></div>
+        <div class="field"><label for="cCountry">Country</label><select id="cCountry"><option>Estonia</option><option>Latvia</option><option>Lithuania</option><option>Finland</option><option>Another EU country</option><option>Outside the EU</option></select></div>
+      </div>
+    </fieldset>
+    <fieldset style="margin-bottom:14px"><legend class="h3" style="margin-bottom:6px">Your words</legend><p class="note" style="margin-bottom:14px">Only needed if you added “We fill in your text”. You can also send them later.</p>
+      <div class="field"><label for="cWords">Headline, second line and button</label><textarea id="cWords" placeholder="Winter sale −30% / Until 8 December / Shop now"></textarea></div>
+    </fieldset>
+    <fieldset class="opts" style="margin-bottom:22px"><legend class="h3" style="margin-bottom:10px">Payment</legend>
+      <label class="opt-row"><input type="radio" name="pay" value="invoice" checked><span><b>{{i:receipt}}Invoice</b><small>Pay within 14 days. Files are available right away.</small></span><span></span></label>
+      <label class="opt-row"><input type="radio" name="pay" value="card"><span><b>{{i:credit-card}}Card</b><small>A demo step: no card is asked for and nothing is charged.</small></span><span></span></label>
+    </fieldset>
+    <div class="field"><label class="chk"><input type="checkbox" id="cTerms" required data-msg="Please accept the licence to continue.">I accept the licence: one brand, no reselling of templates</label><p class="err" hidden></p></div>
+    <div class="step-nav"><button class="btn" type="submit">Place order {{i:arrow-right}}</button><button class="link" type="button" id="backCart">Back to cart</button></div>
+  </form>
+  <aside class="sum" aria-label="Order summary"><h2>Order</h2><dl class="totals" id="totals2"></dl><p class="pay-note">{{i:info}}This is a demo store. No order is created and no money moves.</p></aside>
+</section>
+<section class="wrap" id="doneView" hidden>
+  <div class="done">
+    {{I:circle-check}}
+    <h2 class="h2" id="orderNo">Order received.</h2>
+    <p class="lead" id="orderLead"></p>
+    <ol>
+      <li>{{i:mail}}Right away: invoice and download links by email.</li>
+      <li>{{i:pen-line}}If you added our edit: send your words, get files within 24 working hours.</li>
+      <li>{{i:shield-check}}Rejected by a platform? Reply to the email, we fix it free.</li>
+    </ol>
+    <div class="cta-row"><a class="btn" href="shop.html">Back to the shop</a><a class="link" href="index.html">Home</a></div>
+  </div>
+</section>

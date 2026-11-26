@@ -1,0 +1,28 @@
+<!--@ title="Contact — Pilk banner studio, Tallinn" desc="Write to Pilk: one reply within two working hours, in English, Estonian or Russian." js="pages" nav="contact" body="p-contact" -->
+<section class="wrap page-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Contact</span></nav>
+  <h1 class="h1" data-reveal>Write to us</h1>
+  <p class="lead" data-reveal data-delay="80">One reply within two working hours, in English, Estonian or Russian.</p>
+</section>
+<section class="wrap contact">
+  <ul class="ways">
+    <li>{{I:mail}}<b>hello@pilk.studio</b><span>For briefs, questions and files up to 25 MB.</span></li>
+    <li>{{I:clock}}<b>Mon–Fri, 9–18</b><span>Replies within two working hours. Friday evening briefs get an answer on Monday morning.</span></li>
+    <li>{{I:languages}}<b>English, Eesti, Русский</b><span>Write in the language you think in.</span></li>
+    <li>{{I:map-pin}}<b>Kalamaja, Tallinn</b><span>Visits by appointment. Most clients never need one.</span></li>
+  </ul>
+  <div>
+    <form id="contactForm" novalidate>
+      <div class="grid-2">
+        <div class="field"><label for="ctName">Name</label><input id="ctName" autocomplete="name" required data-msg="How should we address you?"><p class="err" hidden></p></div>
+        <div class="field"><label for="ctEmail">Email</label><input id="ctEmail" type="email" autocomplete="email" required data-msg="We need an email to reply."><p class="err" hidden></p></div>
+      </div>
+      <div class="field"><label for="ctTopic">Topic</label><select id="ctTopic"><option>A new project</option><option>A ready-made set</option><option>The free resize test</option><option>Invoices and payment</option><option>Something else</option></select></div>
+      <div class="field"><label for="ctMsg">Message</label><textarea id="ctMsg" required data-msg="A sentence or two is enough." placeholder="What are you promoting, and where?"></textarea><p class="err" hidden></p></div>
+      <div class="field"><label class="chk"><input type="checkbox" id="ctCall">Call me back instead</label></div>
+      <div class="field" id="ctPhoneF" hidden><label for="ctPhone">Phone</label><input id="ctPhone" type="tel" autocomplete="tel" required data-msg="Which number should we call?"><p class="err" hidden></p></div>
+      <button class="btn" type="submit">Send {{i:send}}</button>
+    </form>
+    <div class="done" id="contactDone" hidden>{{I:circle-check}}<h2 class="h2">Thank you. Message received.</h2><p class="lead">We’ll answer within two working hours. This is a demo studio, so nothing was actually sent.</p><a class="link" href="index.html">Back to home {{i:arrow-right}}</a></div>
+  </div>
+</section>
